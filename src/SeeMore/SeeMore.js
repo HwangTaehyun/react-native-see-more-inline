@@ -101,6 +101,10 @@ class SeeMore extends React.Component {
   }
 
   handleLinkReleased() {
+    if (this.isExpanded()) {
+        this.props.onPressCallbackWhenExpanded();
+    }
+
     const { isShowingMore } = this.state;
     this.setState({
       isLinkPressed: false,
