@@ -139,7 +139,12 @@ class SeeMore extends React.Component {
         numberOfLines={isShowingMore ? undefined : numberOfLines}
         {...this.panResponder.panHandlers}
       >
-        <Text {...this.props}>{isShowingMore ? text : text.slice(0, truncationIndex)}</Text>
+        <Text
+          {...this.props}
+          {...this.panResponder.panHandlers}
+        >
+          {isShowingMore ? text : text.slice(0, truncationIndex)}
+        </Text>
         {this.renderSeeMoreSeeLessLink()}
       </Text>
     );
