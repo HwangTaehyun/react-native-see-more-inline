@@ -25,9 +25,15 @@ class SeeMore extends React.Component {
       isShowingMore: false,
       truncationIndex: undefined,
     };
+
+    this.isTruncable = React.createRef(null);
   }
 
   isExpanded = () => {
+    if (!this.isTruncable.current) {
+        return true;
+    }
+
     const { isShowingMore } = this.state;
     return isShowingMore;
   };
@@ -112,9 +118,10 @@ class SeeMore extends React.Component {
       seeMoreText,
       seeLessText,
     } = this.props;
-    const isTruncable = truncationIndex < text.length;
 
-    if (!isTruncable) {
+    this.isTruncable.current = truncationIndex < text.length;
+
+    if (!this.isTruncable.current) {
       return null;
     }
 
